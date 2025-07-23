@@ -70,3 +70,4 @@ venv.bak/
 
 #UV
 .python-version
+uv.lock
