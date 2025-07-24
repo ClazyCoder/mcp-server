@@ -16,11 +16,14 @@ def get_current_weather_imgs() -> dict[str, str]:
     """
     now = datetime.now()
     minute = now.minute // 30 * 30
-    weather_imgs = get_weather_img_list(
-        now.strftime('%Y%m%d%H') + f'{minute:02d}')
+    date_str = now.strftime('%Y%m%d%H')
+    weather_imgs = get_weather_img_list(date_str + f'{minute:02d}')
     weather_imgs_dict = {}
     for enum, img_base64 in enumerate(weather_imgs):
-        weather_imgs_dict[f"weather_img_{enum}"] = img_base64
+        weather_imgs_dict[f"weather_img_{date_str}{enum*15}"] = {
+            "image": img_base64,
+            "relative_time": f"{enum*15}전" if enum > 0 else "현재"
+        }
 
     return weather_imgs_dict
 
