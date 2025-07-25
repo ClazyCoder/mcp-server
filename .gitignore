@@ -67,3 +67,10 @@ venv.bak/
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+<<<<<<< HEAD
+=======
+
+#UV
+.python-version
+uv.lock
+>>>>>>> dev
