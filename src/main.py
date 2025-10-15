@@ -1,17 +1,19 @@
 from fastmcp import FastMCP
 from dotenv import load_dotenv
+import os
 from utils.weather import get_weather_img_list
 from datetime import datetime
 
 load_dotenv()
 
-mcp = FastMCP("YSG MCP Server")
+mcp = FastMCP("YSG MCP Server", port=os.getenv("PORT"))
+print(f"PORT: {os.getenv('PORT')}")
 
 
 @mcp.tool
 def get_current_weather_imgs() -> dict[str, str]:
     """
-    Returns the current weather images.
+    Returns the current Korea weather images.
     The images are in base64 format. Each image is a 15 minute interval.
     """
     now = datetime.now()

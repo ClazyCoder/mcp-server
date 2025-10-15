@@ -1,0 +1,11 @@
+version: '0.1.0'
+
+services:
+  mcp_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app/mcp_server
