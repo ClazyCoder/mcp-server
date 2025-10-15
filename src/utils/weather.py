@@ -1,8 +1,8 @@
 import dotenv
 import os
 import requests
-from PIL import Image
-import base64
+from PIL import Image as PILImage
+from fastmcp.utilities.types import Image as FastMCPImage
 from io import BytesIO
 
 dotenv.load_dotenv(dotenv.find_dotenv())
@@ -40,16 +40,18 @@ def get_weather_img_list(tm):
             response = requests.get(url)
             with open(f'{IMG_DIR}/{tm}/{enum}.png', 'wb') as f:
                 f.write(response.content)
-            img = Image.open(f'{IMG_DIR}/{tm}/{enum}.png')
+            img = PILImage.open(f'{IMG_DIR}/{tm}/{enum}.png')
             buffered = BytesIO()
             img.save(buffered, format="PNG")
-            img_list.append(base64.b64encode(
-                buffered.getvalue()).decode('utf-8'))
+            img_bytes = buffered.getvalue()
+            img_obj = FastMCPImage(data=img_bytes, format="PNG")
+            img_list.append(img_obj.to_image_content())
     else:
         for enum in range(3):
-            img = Image.open(f'{IMG_DIR}/{tm}/{enum}.png')
+            img = PILImage.open(f'{IMG_DIR}/{tm}/{enum}.png')
             buffered = BytesIO()
             img.save(buffered, format="PNG")
-            img_list.append(base64.b64encode(
-                buffered.getvalue()).decode('utf-8'))
+            img_bytes = buffered.getvalue()
+            img_obj = FastMCPImage(data=img_bytes, format="PNG")
+            img_list.append(img_obj.to_image_content())
     return img_list

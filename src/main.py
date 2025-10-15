@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from utils.weather import get_weather_img_list
 from datetime import datetime
+from typing import Any
 
 load_dotenv()
 
@@ -11,7 +12,7 @@ print(f"PORT: {os.getenv('SERVER_PORT')}")
 
 
 @mcp.tool
-def get_current_weather_imgs() -> dict[str, str]:
+def get_current_weather_imgs() -> dict[str, Any]:
     """
     Returns the current Korea weather images.
     The images are in base64 format. Each image is a 15 minute interval.
@@ -21,9 +22,9 @@ def get_current_weather_imgs() -> dict[str, str]:
     date_str = now.strftime('%Y%m%d%H')
     weather_imgs = get_weather_img_list(date_str + f'{minute:02d}')
     weather_imgs_dict = {}
-    for enum, img_base64 in enumerate(weather_imgs):
+    for enum, img_content in enumerate(weather_imgs):
         weather_imgs_dict[f"weather_img_{date_str}{enum*15}"] = {
-            "image": img_base64,
+            "image": img_content,
             "relative_time": f"{enum*15}전" if enum > 0 else "현재"
         }
 
