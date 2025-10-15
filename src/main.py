@@ -6,7 +6,7 @@ from datetime import datetime
 
 load_dotenv()
 
-mcp = FastMCP("YSG MCP Server", port=os.getenv("PORT"))
+mcp = FastMCP("YSG MCP Server")
 print(f"PORT: {os.getenv('PORT')}")
 
 
@@ -31,4 +31,4 @@ def get_current_weather_imgs() -> dict[str, str]:
 
 
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="http", host="0.0.0.0", port=os.getenv("PORT"))
