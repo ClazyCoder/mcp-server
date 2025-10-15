@@ -13,7 +13,7 @@ IMG_DIR = os.getenv("IMG_DIR")
 
 def url_builder(tm):
     url_list = []
-    for ef in range(0, 30, 15):
+    for ef in range(15, 45, 15):
         url_list.append(
             f'https://apihub.kma.go.kr/api/typ03/cgi/dfs/nph-qpf_ana_img?eva=1&tm={tm}&qpf=B&ef={ef}&map=HR&grid=2&legend=1&size=600&zoom_level=0&zoom_x=0000000&zoom_y=0000000&stn=108&x1=470&y1=575&authKey={WEATHER_API_KEY}')
     return url_list
