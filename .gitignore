@@ -71,3 +71,6 @@ venv.bak/
 #UV
 .python-version
 uv.lock
+
+#Images for Testing
+src/imgs/*
