@@ -30,5 +30,10 @@ def get_current_weather_imgs() -> dict[str, str]:
     return weather_imgs_dict
 
 
+@mcp.tool
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+
 if __name__ == "__main__":
     mcp.run(transport="http", host="0.0.0.0", port=os.getenv("PORT"))
