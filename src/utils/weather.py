@@ -27,8 +27,8 @@ def get_weather_img_list(tm):
 
     Returns:
         img_list: list[str]
-            The weather images in base64 format.
-            The images are in base64 format. Each image is a 15 minute interval.
+            The weather images mcp ImageContent.
+            The images are in png format. Each image is a 15 minute interval.
     If IMG_DIR/{tm} directory does not exist, it will be created. and the images will be downloaded.
     If IMG_DIR/{tm} directory exists, the images will be loaded from the directory.
     """
