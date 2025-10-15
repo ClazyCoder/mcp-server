@@ -7,7 +7,7 @@ from datetime import datetime
 load_dotenv()
 
 mcp = FastMCP("YSG MCP Server")
-print(f"PORT: {os.getenv('PORT')}")
+print(f"PORT: {os.getenv('SERVER_PORT')}")
 
 
 @mcp.tool
@@ -36,4 +36,4 @@ def greet(name: str) -> str:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="http", host="0.0.0.0", port=os.getenv("PORT"))
+    mcp.run(transport="http", host="0.0.0.0", port=os.getenv("SERVER_PORT"))
